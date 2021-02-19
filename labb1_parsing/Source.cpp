@@ -14,9 +14,9 @@ int main(int argc, char* argv[]){
 
 
 	while (luthor.programit != luthor.program.end()) {
-		std::cout << luthor.next().type << "    ";
+		std::cout << luthor.get_token().type << "    ";
 		std::cout << luthor.lex() << "\n";
-		luthor.programit++;
+		luthor.stepforward();
 	}
 
 	
