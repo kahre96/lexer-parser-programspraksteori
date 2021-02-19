@@ -5,7 +5,9 @@
 
 class node {
 
-	
+	void add(node* child) {
+		children.push_back(child);
+	}
 
 	virtual bool evaluate(std::string::iterator& first, std::string::iterator last) {
 

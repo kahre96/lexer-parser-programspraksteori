@@ -17,10 +17,6 @@ int main(int argc, char* argv[]){
 		std::cout << luthor.next().type << "    ";
 		std::cout << luthor.lex() << "\n";
 		luthor.programit++;
-		
-
-
-
 	}
 
 	
@@ -55,8 +51,10 @@ int main(int argc, char* argv[]){
 		std::cout << lineInput;
 	}
 */
-	//for (;;) Sleep(1000);
-
+	for (;;) Sleep(1000);
+	
+	
+	
 	return 0;
 
 }
