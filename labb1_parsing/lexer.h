@@ -6,6 +6,9 @@
 struct lexer {
 
 	lexer() = default;
+	lexer(std::string inprogram):program(inprogram) {
+		programit = program.begin();
+	}
 
 	//ger programet som ska köras till lexern
 	void set_program(std::string inprogram) {

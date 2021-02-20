@@ -2,7 +2,7 @@
 #include <Windows.h>
 #include <string>
 
-#include "lexer.h"
+#include "parser.h"
 
 lexer luthor;
 
@@ -18,6 +18,11 @@ int main(int argc, char* argv[]){
 		std::cout << luthor.lex() << "\n";
 		luthor.stepforward();
 	}
+
+	parser test(input);
+
+	auto result = test.parse_str();
+
 
 	
 
