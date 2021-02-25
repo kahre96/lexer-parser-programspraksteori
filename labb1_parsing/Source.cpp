@@ -21,9 +21,9 @@ int main(int argc, char* argv[]){
 
 	parser test(input);
 
-	auto result = test.parse_str();
+	auto result = test.parse_pattern();
 
-
+	result->print();
 	
 
 
@@ -84,3 +84,7 @@ int main(int argc, char* argv[]){
 * I EXCECUTE MÖNSTERANPASSNING . = ANY CHAR RETURN TRUE
 * 
 * */
+
+
+
+//skapa lokal itterator som startar på först parametern

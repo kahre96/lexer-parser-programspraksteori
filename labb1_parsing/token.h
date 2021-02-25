@@ -12,8 +12,10 @@ struct token {
 		RIGHTBRACE,
 		STAR,
 		ANY,
-		BACKSLASH,
+		IGNORES,
+		WHICHGROUP,
 		UNKNOWN,
+		INTEGER,
 		EOP
 	};
 	type type;
@@ -23,18 +25,20 @@ struct token {
 /*
 * <pattern> -> <expr>
 * <expr> -> <subexp> <expr> | <subexpr>
-* <subexpr> -> <or>
-*			| <infang>
-*			|<str>
+* <subexpr> -> <ignore>
+*			| <or>
+*			| <group>
+*			| <whichgroup>
+*			| <str>
 *	< or > -> <str> + <str>
 *	<str> <star>[<str] |  <char> [<str>]  | <counter><str>
 *	<char> -> <any> | [ A-z]
 *	<star> -> <char> "*"
-*	<infang> -> ( <patern> )
+*	<group> -> ( <patern> )
 *	< any > ->  "."
 *	< counter > -> <char> "{"  { <integer> }  "}"
 *	< integer > ->[0..9]
-*	<ignore> -> <str> \I
-*	<vilkeninfang> ->  "\O{ <integer> }"
+*	<ignore> -> <group> \I | <str> \I
+*	<whichgroup> ->  "\O{ <integer> }"
 */
 #endif

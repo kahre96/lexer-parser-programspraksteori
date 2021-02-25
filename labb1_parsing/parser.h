@@ -10,12 +10,20 @@ public:
 	parser(std::string program) :lexer(program), programcode(program) {
 
 	}
-
-
+	using sit = std::string::iterator;
+	node* parse_pattern();
+	node* parse_expr();
+	node* parse_subexpr();
 	node* parse_str();
+	node* parse_star();
+	node* parse_counter();
+	node* parse_or();
+	node* parse_group();
 
 	std::string programcode;
 	lexer lexer;
+	
+	
 };
 
 

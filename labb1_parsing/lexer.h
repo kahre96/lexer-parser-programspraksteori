@@ -2,9 +2,10 @@
 #define LEXER_H
 #include "token.h"
 #include <iostream>
+using it = std::string::iterator;
 
 struct lexer {
-
+	
 	lexer() = default;
 	lexer(std::string inprogram):program(inprogram) {
 		programit = program.begin();
@@ -18,10 +19,16 @@ struct lexer {
 	}
 	//tar nästa token
 	token get_token();
+	
 
 	void stepforward();
-		
 
+	token peekforward();
+		
+	void recreate() {
+		program.erase(programit);
+		programit = program.begin();
+	}
 	
 
 	//returnar innehållet i token
@@ -31,7 +38,7 @@ struct lexer {
 
 	std::string lexeme; // faktiska innehållet i token
 	std::string program; //programmet som ska köras
-	std::string::iterator programit; // itterator för programet
+	it programit; // itterator för programet
 };
 
 
