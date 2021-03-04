@@ -32,9 +32,9 @@ struct token {
 *			| <str>
 *	< or > -> <str> + <str>
 *	<str> <star>[<str] |  <char> [<str>]  | <counter><str>
-*	<char> -> <any> | [ A-z]
+*	<char> -> [ A-z]
 *	<star> -> <char> "*"
-*	<group> -> ( <patern> )
+*	<group> -> ( <subexpr> )
 *	< any > ->  "."
 *	< counter > -> <char> "{"  { <integer> }  "}"
 *	< integer > ->[0..9]

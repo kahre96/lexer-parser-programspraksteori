@@ -23,19 +23,25 @@ struct lexer {
 
 	void stepforward();
 
-	token peekforward();
+	token peekforward(int N);
 		
 	void recreate() {
-		program.erase(programit);
+		
 		programit = program.begin();
 	}
+	void update();
 	
 
 	//returnar innehållet i token
 	std::string lex() { 
 		return lexeme;
 	}
+	std::string peeklex() {
+		return peeklexeme;
+	}
 
+
+	std::string peeklexeme;
 	std::string lexeme; // faktiska innehållet i token
 	std::string program; //programmet som ska köras
 	it programit; // itterator för programet

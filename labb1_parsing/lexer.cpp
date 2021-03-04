@@ -9,8 +9,8 @@ token lexer::get_token() {
 	auto ch = *programit; //här är felet, itterator out of range
 	lexeme = ch;
 	if (ch == '\\') {
-		programit++;
-		ch = *programit;
+		auto next = std::next(programit, 1);
+		ch = *next;
 		lexeme += ch;
 		if (ch == 'I') {
 			return token{ token::IGNORES };;
@@ -43,6 +43,9 @@ token lexer::get_token() {
 	if (ch >= 'A' && ch <= 'z') {
 		return token{ token::CHARACTER };;
 	}
+	if (ch == ' ') {
+		return token{ token::CHARACTER };;
+	}
 	if (isdigit(ch)) {
 		return token{ token::INTEGER };
 	}
@@ -55,20 +58,54 @@ void lexer::stepforward(){
 
 }
 
-token lexer::peekforward()
+token lexer::peekforward(int N)
 {
-	if (programit == program.end()-1) {
+	
+	
+	if (programit == program.end() - N) {
 		return token{ token::UNKNOWN };
 	}
-	auto next = std::next(programit, 1);
+	
+	
+	
+	auto next = std::next(programit, N);
 
-	auto nextchar = *next;
-	if (nextchar == '{') {
-		return token{ token::RIGHTBRACE };
+	auto peekchar = *next;
+	peeklexeme = peekchar;
+	switch (peekchar) {
+	case '+':
+		return token{ token::OR };
+	case '(':
+		return token{ token::LEFTPARENTHESE };
+	case ')':
+		return token{ token::RIGHTPARENTHESE };;
+
+	case '{':
+		return token{ token::LEFTBRACE };;
+	case '}':
+		return token{ token::RIGHTBRACE };;
+	case '.':
+		return token{ token::ANY };;
+	case '*':
+		return token{ token::STAR };;
 	}
-	if (nextchar == '*') {
+	if (peekchar == '{') {
+		return token{ token::LEFTBRACE};
+	}
+	if (peekchar == '*') {
 		return token{ token::STAR };
 	}
+	if (peekchar == ' ') {
+		return token{ token::CHARACTER };;
+	}
+	if (peekchar >= 'A' && peekchar <= 'z') {
+		return token{ token::CHARACTER };;
+	}
 	return token{ token::UNKNOWN };
+}
+
+void lexer::update() {
+	program.erase(program.begin() + 0, programit);
+	recreate();
 }
 

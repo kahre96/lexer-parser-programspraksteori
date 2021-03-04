@@ -11,14 +11,18 @@ public:
 
 	}
 	using sit = std::string::iterator;
-	node* parse_pattern();
-	node* parse_expr();
-	node* parse_subexpr();
-	node* parse_str();
-	node* parse_star();
-	node* parse_counter();
-	node* parse_or();
-	node* parse_group();
+	pattern_node* parse_pattern();
+	expr_node* parse_expr();
+	subexpr_node* parse_subexpr();
+	str_node* parse_str();
+	star_node* parse_star();
+	counter_node* parse_counter();
+	or_node* parse_or();
+	group_node* parse_group();
+	whichgroup_node* parse_which_group();
+	ignore_node* parse_ignore();
+	any_node* parse_any();
+	char_node* parse_char();
 
 	std::string programcode;
 	lexer lexer;

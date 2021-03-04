@@ -7,10 +7,12 @@
 lexer luthor;
 
 int main(int argc, char* argv[]){
-
+	//std::string data = "promise to (Love+Hate)\\I you\\O{1}";
+	std::string data = "promise to (Love+Hate)\\I you\\O{1}";
 	std::string input;
 	std::getline(std::cin, input);
-	luthor.set_program(input);
+
+	luthor.set_program(data);
 
 
 	while (luthor.programit != luthor.program.end()) {
@@ -19,11 +21,22 @@ int main(int argc, char* argv[]){
 		luthor.stepforward();
 	}
 
-	parser test(input);
+	parser test(data);
 
 	auto result = test.parse_pattern();
-
 	result->print();
+	result->set_input(input);
+	if (result->evaluate()) {
+		result->view_match();
+		return EXIT_SUCCESS;
+	}
+	else {
+		std::cout << "???" << std::endl;
+		return EXIT_FAILURE;
+	}
+	
+
+	
 	
 
 
